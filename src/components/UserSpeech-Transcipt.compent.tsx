@@ -1,7 +1,7 @@
 import { useTranscript } from '../contexts/Transcipt.context';
 
 export default function UserSpeechTransciptcompent() {
-    const { transcriptText, setTranscriptText } = useTranscript();
+    const { transcriptText } = useTranscript();
 
     return (
         <div className="w-full">
