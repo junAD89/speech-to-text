@@ -8,7 +8,8 @@ export default function ShowTextcomponent() {
         transcript,
         listening,
         resetTranscript,
-        browserSupportsSpeechRecognition
+
+
     } = useSpeechRecognition();
 
     const startListening = () => SpeechRecognition.startListening({
