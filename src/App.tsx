@@ -1,31 +1,15 @@
-import { useState } from 'react'
 import './App.css'
 import ShowTextcomponent from "./components/ShowText.component";
 import UserSpeechTransciptcompent from './components/UserSpeech-Transcipt.compent';
 import NavBarComponent from './components/NavBar.component';
 
 
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 import { TransciptProvider } from "./contexts/transcipt.context";
 
 function App() {
 
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
-  } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
-
-  const startListening = () => SpeechRecognition.startListening({
-    continuous: true,
-    language: 'en-US'
-  });
   return (
     <>
 
@@ -42,13 +26,6 @@ function App() {
 
 
 
-        <div>
-          <p>Microphone: {listening ? 'on' : 'off'}</p>
-          <button onClick={startListening}>Start</button>
-          <button onClick={SpeechRecognition.stopListening}>Stop</button>
-          <button onClick={resetTranscript}>Reset</button>
-          <p>{transcript}</p>
-        </div>
 
       </TransciptProvider>
 
