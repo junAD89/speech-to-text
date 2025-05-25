@@ -1,4 +1,4 @@
-import { useTranscript } from '../contexts/transcipt.context';
+import { useTranscript } from '../contexts/Transcipt.context';
 
 export default function UserSpeechTransciptcompent() {
     const { transcriptText, setTranscriptText } = useTranscript();

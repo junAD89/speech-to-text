@@ -5,7 +5,7 @@ import NavBarComponent from './components/NavBar.component';
 
 
 
-import { TransciptProvider } from "./contexts/transcipt.context";
+import { TransciptProvider } from "./contexts/Transcipt.context";
 
 function App() {
 

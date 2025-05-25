@@ -1,5 +1,5 @@
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-import { useTranscript } from "../contexts/transcipt.context";
+import { useTranscript } from "../contexts/Transcipt.context";
 import { useEffect } from 'react';
 
 export default function ShowTextcomponent() {
