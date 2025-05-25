@@ -1,31 +1,22 @@
-import React from 'react'
-
 export default function ShowTextcomponent() {
     return (
-        <>
-            <div className=' flex flex-col items-center justify-center '>
-                <div
-                    ///conteneur of Text to read
-                    className="bg-blue-500 card bg-base-100 w-96 shadow-sm"
-                >
-                    <div className="card-body">
-                        <h1 className='justify-center text-black-600  card-title'>
-                            Text to read
-                        </h1>
+        <div className="space-y-6">
+            <div className="card bg-white/10 backdrop-blur-lg shadow-xl transition-all hover:shadow-2xl">
+                <div className="card-body p-6">
+                    <h2 className="card-title text-2xl font-bold text-white mb-4">
+                        Text to Read
+                    </h2>
+                    <div className="bg-gray-800/50 rounded-lg p-4 min-h-[100px]">
+                        {/* Text content will go here */}
                     </div>
-
-                </div>
-
-                <div>
-                    <button className='btn w-40 h-14 bg-blue-500 m-10 rounded-xl text-4xl border-none '>
-                        <h1 className=''>
-
-                            Start
-                        </h1>
-
-                    </button>
                 </div>
             </div>
-        </>
+
+            <div className="flex justify-center">
+                <button className="btn btn-primary btn-lg transform hover:scale-105 transition-all duration-200 bg-gradient-to-r from-blue-500 to-blue-600 border-none text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-blue-500/50">
+                    <span className="text-2xl">Start</span>
+                </button>
+            </div>
+        </div>
     )
 }
