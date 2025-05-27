@@ -1,27 +1,53 @@
+/**
+ * ShowTextComponent - A React component for speech recognition and text comparison
+ * 
+ * This component provides a speech recognition interface that allows users to:
+ * - Start/stop voice recording
+ * - Display predefined text for reading
+ * - Compare spoken text with predefined text
+ * 
+ * Features:
+ * - Real-time speech-to-text conversion
+ * - Continuous listening mode
+ * - English language support
+ * - Visual feedback for recording status
+ * - Text comparison functionality
+ */
+
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import { useTranscript } from "../contexts/Transcipt.context";
 import { useEffect, useState } from 'react';
 
 export default function ShowTextcomponent() {
-    const { transcriptText, setTranscriptText } = useTranscript(); // ✅ Ajoute transcriptText
+    // Context hook for managing transcript text across components
     const {
-        transcript,
-        listening,
-        resetTranscript,
+        //  transcriptText, 
+        setTranscriptText } = useTranscript();
+
+    // Speech recognition hooks for managing voice input
+    const {
+        transcript,      // Current transcribed text
+        listening,      // Boolean indicating if recording is active
+        resetTranscript // Function to clear current transcript
     } = useSpeechRecognition();
 
+    // State for storing the current word to be read
     const [wordRead, setWordRead] = useState("")
 
+    /**
+     * Starts the speech recognition with specified configuration
+     */
     const startListening = () => SpeechRecognition.startListening({
         continuous: true,
         language: 'en-US'
     });
 
+    // Update transcript text in context when transcript changes
     useEffect(() => {
         setTranscriptText(transcript)
     }, [transcript, setTranscriptText])
 
-
+    // Predefined words for reading practice
     const worldLevel = [
         {
             word: "hello I'm happy",
@@ -39,23 +65,29 @@ export default function ShowTextcomponent() {
             word: "I'm going to the end of the road",
         }
     ]
+
+    // Log changes to wordRead state
     useEffect(() => {
-        // ce code s'exécute à chaque changement de wordRead
         console.log('wordRead a changé :', wordRead);
     }, [wordRead]);
 
+    // Initialize first word on component mount
     useEffect(() => {
-        ////start of getting word in get word function
         getWord();
-
     }, [])
 
+    /**
+     * Retrieves the first word from worldLevel array
+     */
     const getWord = async () => {
         const { word } = worldLevel[0];
-
-        setWordRead(word)////set word with word value
+        setWordRead(word)
     }
 
+    /**
+     * Compares user's spoken text with the target word
+     * Displays alert based on match result
+     */
     const checkUserResponse = () => {
         if (wordRead === transcript) {
             console.log("Trouve")
