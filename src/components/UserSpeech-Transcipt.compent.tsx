@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import { useTranscript } from '../contexts/Transcipt.context';
+
+
 
 export default function UserSpeechTransciptcompent() {
     const { transcriptText } = useTranscript();
+
+    useEffect(() => {
+        console.log(typeof transcriptText, "est le type de:", transcriptText)
+    })
 
     return (
         <div className="w-full">
