@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 import { Toaster, toast } from 'sonner';
 import { Button } from "@/components/ui/button"
 import {
@@ -15,6 +17,9 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react"
 
 const SignUp = () => {
+    let navigate = useNavigate();
+
+
     const auth = getAuth();
 
     const [userEmail, setUserEmail] = useState("")
@@ -25,13 +30,14 @@ const SignUp = () => {
         try {
 
             const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-            alert("Creation is good")
-            toast.success("User created")
+            localStorage.setItem("userAuthState", "true");
+            toast.success("account created");
+            navigate("/home");
+            window.location.reload();
             return userCredential.user;
         } catch (error) {
-            console.error(error)
-            toast.error(stringify)
-            alert("Creation is not good")
+            console.error(error);
+            toast.error("error can't create Account");
         }
     }
 
@@ -60,7 +66,7 @@ const SignUp = () => {
             </CardHeader>
             <CardContent >
                 <form>
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col  gap-6">
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
                             <Input

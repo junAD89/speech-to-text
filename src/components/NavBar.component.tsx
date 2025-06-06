@@ -1,5 +1,16 @@
+import { getAuth } from "firebase/auth";
 
 export default function NavBarComponent() {
+
+    const auth = getAuth();
+
+    const user = auth.currentUser;
+
+    const signOut = async () => {
+        await auth.signOut();
+        localStorage.setItem("userAuthState", "false");
+        window.location.reload();
+    }
     return (
         <nav className="navbar bg-gradient-to-r from-purple-600 to-fuchsia-500 shadow-lg">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -8,7 +19,7 @@ export default function NavBarComponent() {
                 </a>
                 <div className="flex gap-4">
                     <button className="btn btn-ghost text-white">About</button>
-                    <button className="btn btn-ghost text-white">Help</button>
+                    <button onClick={signOut} className="btn btn-ghost text-white">Sign Out</button>
                 </div>
             </div>
         </nav>

@@ -29,12 +29,10 @@ function App() {
 
     if (localStorage.getItem("userAuthState") === "true") {
       setUserAuthState(true)
-      alert("User is logged in")
     } else {
 
       setUserAuthState(false)
 
-      alert("User is not logged in")
     }
   }, [])
 
