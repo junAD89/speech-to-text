@@ -1,4 +1,6 @@
 # Logs
+
+firebase-config.ts
 logs
 *.log
 npm-debug.log*

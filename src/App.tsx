@@ -6,10 +6,45 @@ import NavBarComponent from './components/NavBar.component';
 
 
 import { TransciptProvider } from "./contexts/Transcipt.context";
+import { useEffect, useState } from 'react';
+import SignUp from './UserAuth/SignUp';
+
+
+
 
 function App() {
 
 
+  const [userAuthState, setUserAuthState] = useState(false)
+
+
+
+  // on verifie si user est deja auth ou pas grace au  local storage 
+  // et apres on attribue au state en fonction 
+  //  
+  useEffect(() => {
+
+
+    if (localStorage.getItem("userAuthState") === "true") {
+      setUserAuthState(true)
+      alert("User is logged in")
+    } else {
+
+      setUserAuthState(false)
+
+      alert("User is not logged in")
+    }
+  }, [])
+
+
+  // si le state est false on affiche le composant SignUp
+  if (!userAuthState) {
+    return <SignUp />
+  }
+
+
+  // sinon le code continue sa route et affiche 
+  //  le reste de la page
   return (
     <>
 
@@ -23,11 +58,8 @@ function App() {
             <UserSpeechTransciptcompent />
           </div>
         </main>
-
-
-
-
       </TransciptProvider>
+
 
     </>
   )
