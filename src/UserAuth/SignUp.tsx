@@ -1,3 +1,4 @@
+import { Toaster, toast } from 'sonner';
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -10,28 +11,45 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { motion } from "framer-motion"
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react"
 
 const SignUp = () => {
+    const auth = getAuth();
+
+    const [userEmail, setUserEmail] = useState("")
+    const [userPassword, setUserPassword] = useState("")
+
+
+    const createUser = async () => {
+        try {
+
+            const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+            alert("Creation is good")
+            toast.success("User created")
+            return userCredential.user;
+        } catch (error) {
+            console.error(error)
+            toast.error(stringify)
+            alert("Creation is not good")
+        }
+    }
+
+
 
 
     // : on crée une version animée du bouton ShadCN
     const MotionButton = motion(Button);
 
 
-    const hoverAnimation = {
-        scale: 0.85,
-        duration: 0.5,
-        ease: "easeInOut",
-
-    }
-
     const tapAnimation = {
-        scale: 1.05,
+        scale: 0.5,
     };
+
 
     return (
         <Card className="h-screen w-full">
+            <Toaster />
             <CardHeader className="justify-center">
                 <CardTitle
                 >Sign up for an account</CardTitle>
@@ -50,6 +68,7 @@ const SignUp = () => {
                                 type="email"
                                 placeholder="m@example.com"
                                 required
+                                onChange={(e) => { setUserEmail(e.target.value) }}
                             />
                         </div>
                         <div className="grid gap-2">
@@ -57,7 +76,11 @@ const SignUp = () => {
                                 <Label htmlFor="password">Password</Label>
 
                             </div>
-                            <Input id="password" type="password" required />
+                            <Input
+                                id="password"
+                                type="password"
+                                onChange={(e) => { setUserPassword(e.target.value) }}
+                                required />
                         </div>
                     </div>
                 </form>
@@ -68,8 +91,9 @@ const SignUp = () => {
                 <MotionButton
                     type="submit"
                     className="w-full"
-                    whileHover={hoverAnimation}
                     whileTap={tapAnimation}
+                    onClick={createUser}
+
                 >
                     Sign up
                 </MotionButton>
@@ -79,13 +103,16 @@ const SignUp = () => {
                     type="submit"
                     className="w-full"
                     variant="outline"
-                    whileHover={hoverAnimation}
                     whileTap={tapAnimation}
                 >
                     Sign up with Google
                 </MotionButton>
             </CardFooter>
         </Card>
+
+
+
+
     )
 }
 
