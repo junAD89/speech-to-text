@@ -4,7 +4,6 @@ export default function NavBarComponent() {
 
     const auth = getAuth();
 
-    const user = auth.currentUser;
 
     const signOut = async () => {
         await auth.signOut();
