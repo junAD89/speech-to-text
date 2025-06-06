@@ -10,8 +10,14 @@ import { useEffect, useState } from 'react';
 import SignUp from './UserAuth/SignUp';
 
 
-import { initializeApp } from "firebase/app";
+// Import Firebase initialization
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { app } from "./firebase-config";
+
+// Initialize Firebase services
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 
 function App() {
