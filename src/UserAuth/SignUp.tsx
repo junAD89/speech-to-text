@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { easeIn, motion } from "framer-motion"
+import {   motion } from "framer-motion"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 const SignUp = () => {
