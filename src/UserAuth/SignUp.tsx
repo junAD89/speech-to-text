@@ -32,7 +32,7 @@ const SignUp = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
             localStorage.setItem("userAuthState", "true");
             toast.success("account created");
-            navigate("/home");
+            // navigate("/home");
             window.location.reload();
             return userCredential.user;
         } catch (error) {
