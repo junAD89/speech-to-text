@@ -17,7 +17,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react"
 
 const SignUp = () => {
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
 
     const auth = getAuth();
